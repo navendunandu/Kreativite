@@ -48,21 +48,23 @@ if (isset($_GET["delId"])) {
 
 <body>
 	<div class="container mt-5">
-		<form method="post" enctype="multipart/form-data">
+		<form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="loc-name">Location Name:</label>
-						<input type="text" class="form-control" name="loc-name" id="loc-name" />
+						<input required type="text" class="form-control" name="loc-name" id="loc-name" />
+						<div class="invalid-feedback">Please fill this field</div>
 					</div>
 					<div class="form-group">
 						<label for="loc-address">Address:</label>
-						<textarea class="form-control" name="loc-address" id="loc-address"
+						<textarea required class="form-control" name="loc-address" id="loc-address"
 							placeholder="Enter the location address"></textarea>
+							<div class="invalid-feedback">Please fill this field</div>
 					</div>
 					<div class="form-group">
 						<label for="loc-state">State:</label>
-						<select class="form-control" name="loc-state" id="loc-state" onchange="getDistrict(this.value)">
+						<select required class="form-control" name="loc-state" id="loc-state" onchange="getDistrict(this.value)">
 							<option value="">Choose State</option>
 							<?php
 							$selectState = "select * from tbl_state";
@@ -74,36 +76,42 @@ if (isset($_GET["delId"])) {
 								</option>
 							<?php } ?>
 						</select>
+						<div class="invalid-feedback">Please choose an option</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="loc-district">District:</label>
-						<select class="form-control" name="loc-district" id="loc-district"
+						<select required class="form-control" name="loc-district" id="loc-district"
 							onchange="getPlace(this.value)">
 							<option value="">Choose District</option>
 						</select>
+						<div class="invalid-feedback">Please choose an option</div>
 					</div>
 					<div class="form-group">
 						<label for="loc-place">Place:</label>
-						<select class="form-control" name="loc-place" id="loc-place">
+						<select required class="form-control" name="loc-place" id="loc-place">
 							<option value="">Choose Place</option>
 						</select>
+						<div class="invalid-feedback">Please choose an option</div>
 					</div>
 					<div class="form-group">
 						<label for="loc-details">Details:</label>
-						<textarea class="form-control" name="loc-details" id="loc-details"
+						<textarea required class="form-control" name="loc-details" id="loc-details"
 							placeholder="Enter the location details"></textarea>
+							<div class="invalid-feedback">Please fill this field</div>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="loc-img">Add Location Image:</label>
-				<input type="file" class="form-control-file" name="loc-img" id="loc-img" />
+				<input required type="file" class="form-control-file" name="loc-img" id="loc-img" />
+				<div class="invalid-feedback">Please select an image</div>
 			</div>
 			<div class="form-group">
 				<label for="loc-rent">Location Rent:</label>
-				<input type="text" class="form-control" name="loc-rent" id="loc-rent" />
+				<input required type="text" class="form-control" name="loc-rent" id="loc-rent" />
+				<div class="invalid-feedback">Please fill this field</div>
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Add Location" name="btn_submit" id="btn_submit" />
@@ -183,6 +191,19 @@ if (isset($_GET["delId"])) {
 				}
 			});
 		}
+
+		document.addEventListener("DOMContentLoaded",function(){
+            const form =document.querySelector(".needs-validation")
+            form.addEventListener("submit",function(event){
+                if(!form.checkValidity())
+                {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add("was-validated")
+            })
+            
+        })
 
 	</script>
 </body>

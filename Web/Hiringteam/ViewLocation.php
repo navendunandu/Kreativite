@@ -16,7 +16,7 @@ include("Head.php");
 
 <body>
     
-<div class="container mt-5">
+<div class="container-fluid mt-5">
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -29,15 +29,23 @@ include("Head.php");
                     <th>Location Image</th>
                     <th>Owner Name</th>
                     <th>Owner Contact</th>
-                    <th>Owner Email</th>
+                    <th>Location Rent</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $i = 0;
-                $selQry = "select * from tbl_locationdetails l inner join tbl_place p on l.place_id = p.place_id inner join tbl_district d on p.district_id =d.district_id inner join tbl_state s on d.state_id = s.state_id inner join tbl_locationlender len on l.lender_id = len.lender_id";
-
+                $selQry = "select * from tbl_locationdetails l inner join tbl_place p on l.place_id = p.place_id inner join tbl_district d on p.district_id =d.district_id inner join tbl_state s on d.state_id = s.state_id inner join tbl_locationlender len on l.lender_id = len.lender_id ";
+                //    echo $selQry = "SELECT *
+                //     FROM tbl_locationdetails l
+                //     INNER JOIN tbl_place p ON l.place_id = p.place_id
+                //     INNER JOIN tbl_district d ON p.district_id = d.district_id
+                //     INNER JOIN tbl_state s ON d.state_id = s.state_id
+                //     INNER JOIN tbl_locationlender len ON l.lender_id = len.lender_id
+                //     LEFT JOIN tbl_locationbooking lb ON l.location_id = lb.location_id
+                //     WHERE lb.location_id IS NULL
+                //     ";
                 $selData = $con->query($selQry);
                 while($row = $selData->fetch_assoc())
                 {
@@ -53,9 +61,9 @@ include("Head.php");
                     <td><img src="../assets/files/loclender/Photo/<?php echo $row["location_image"]?>" width="100px" /></td>
                     <td><?php echo $row["lender_name"] ?></td>
                     <td><?php echo $row["lender_contact"] ?></td>
-                    <td><?php echo $row["lender_email"] ?></td>
+                    <td><?php echo $row["location_rent"] ?>/Day</td>
                     <td>
-                        <a href="BookLocation.php?applyId=<?php echo $row["location_id"] ?>" class="btn btn-primary">Apply</a>
+                        <a href="BookLocation.php?applyId=<?php echo $row["location_id"]?>" class="btn btn-primary">Apply</a>
                     </td>
                 </tr>
                 <?php } ?>

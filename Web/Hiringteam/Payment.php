@@ -155,7 +155,12 @@ include("../assets/connection/connection.php");
     </head><?php
     if(isset($_POST["btnpay"])!="")
     {
-         $up ="update tbl_locationbooking set payment_status='1', booking_status='3' where booking_id='".$_GET["bid"]."'";
+        if(isset($_GET['bid'])){
+            $up ="update tbl_locationbooking set payment_status='1', booking_status='3' where booking_id='".$_GET["bid"]."'";
+        }
+        else if(isset($_GET['pid'])){
+            $up ="update tbl_locationbooking set payment_status='2', booking_status='6' where booking_id='".$_GET["pid"]."'";
+        }
         if($con->query($up))
         {
             ?>

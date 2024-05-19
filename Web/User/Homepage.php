@@ -1,7 +1,7 @@
 <?php
 include("../Assets/Connection/connection.php");
 session_start();
-
+include('./SessionValidation.php');
 $selQry = "select * from tbl_userregistration ur inner join tbl_usertype ut on ur.usertype_id = ut.usertype_id inner join tbl_place p on ur.place_id = p.place_id where user_id='".$_SESSION["uid"]."'";
 $data = $con->query($selQry);
 $row= $data->fetch_assoc();
@@ -15,7 +15,7 @@ $row= $data->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Meyawo landing page.">
     <meta name="author" content="Devcrud">
-    <title>KREATIVITE</title>
+    <title>HOMEPAGE - <?php echo strtoupper($_SESSION["uname"]) ?></title>
     <!-- font icons -->
     <link rel="stylesheet" href="../Assets/Templates/Main/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + Meyawo main styles -->
@@ -47,7 +47,13 @@ $row= $data->fetch_assoc();
                     <a class="link" href="./ViewApplication.php">View Applications</a>
                 </li>
                 <li class="item">
+                    <a class="link" href="./MyComplaint.php">MyComplaint</a>
+                </li>
+                <li class="item">
                     <a class="link" href="./MyProfile.php">My Profile</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="../index.html">Log Out</a>
                 </li>
                 <!-- <li class="item ml-md-3">
                     <a href="components.html" class="btn btn-primary">Components</a>
@@ -67,10 +73,10 @@ $row= $data->fetch_assoc();
         <div class="header-content container">
             <h1 class="header-title">
                 <span class="up">HI!</span>
-                <span class="down">I am <?php echo $_SESSION["uname"] ?></span>
+                <span class="down"><?php echo $_SESSION["uname"] ?></span>
             </h1>
             <p class="header-subtitle"><?php echo $row["usertype_name"] ?></p>            
-            <a class="btn btn-primary" href='./Previouswork.php'>My Work</a>
+            <a class="btn btn-primary" href='./Previouswork.php'>Go to your works</a>
             <!-- <button class="btn btn-primary">Visit My Works</button> -->
         </div>              
     </header><!-- end of page header -->
@@ -123,7 +129,7 @@ $row= $data->fetch_assoc();
                 ?>
             <div class="blog-card">
                 <div class="blog-card-header">
-                    <img src="../assets/files/user/Photo/<?php echo $row2['work_image']?>" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    <img src="../assets/files/user/Photo/<?php echo $row2['work_image']?>" class="blog-card-img" alt="">
                 </div>
                 <div class="blog-card-body">
                     <!-- <h5 class="blog-card-title"></h6> -->
@@ -133,7 +139,7 @@ $row= $data->fetch_assoc();
                         <a href="#"><i class="ti-heart text-danger"></i> 234</a>
                         <a href="#"><i class="ti-comment"></i> 123</a>
                     </p> -->
-                    <p><?php echo $row2["work_details"] ?></p>
+                    <h3><?php echo $row2["work_details"] ?></h3>
 
                    
                 </div>

@@ -56,11 +56,14 @@ session_start();
                     </td>
                     <td>
                         <a href="Chat.php?chatId=<?php echo $row["hiring_id"]?>" class="btn btn-primary">Chat</a>
+                        <a href="Complaint.php?complaintId=<?php echo $row["hiring_id"]?>" class="btn btn-primary">Complaints</a>
+                       
                     </td>
                 </tr>
                 <?php } ?>
             </tbody>
         </table>
+        <a class="btn btn-primary" href="./Feedback.php">Review</a>
     </div>
 </body>
 </html>

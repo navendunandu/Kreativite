@@ -83,7 +83,8 @@ if(isset($_GET["reject"]))
                             <td><?php echo $row["hiring_email"] ?></td>
                             <td><?php echo $row["hiring_address"] ?></td>
                             <td><img src="../Assets/Files/Hiringteam/Photo/<?php echo $row["hiring_photo"] ?>" width="75" height="75" /></td>
-                            <td><img src="../Assets/Files/Hiringteam/Proof/<?php echo $row["hiring_proof"] ?>" width="75" height="75" /></td>
+                            <!-- <td><img src="../Assets/Files/Hiringteam/Proof/<?php echo $row["hiring_proof"] ?>" width="75" height="75" /></td> -->
+                            <td><a href="ViewProof.php?view=<?php echo $row["hiring_id"] ?>"><img src="../Assets/Files/Hiringteam/Proof/<?php echo $row["hiring_proof"] ?>" width="75" height="75" /></a></td>
                             <td>
                                 <a href="HiringTeamVerification.php?update=<?php echo $row["hiring_id"] ?>" class="btn btn-success">Accept</a> /
                                 <a href="HiringTeamVerification.php?reject=<?php echo $row["hiring_id"] ?>" class="btn btn-danger">Reject</a>

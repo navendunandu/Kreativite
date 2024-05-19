@@ -80,7 +80,7 @@ $ename="";
             <table class="table table-bordered" align="center">
                 <tr>
                     <td>User Type:</td>
-                    <td><input type="text" name="userType" id="userType" required="required" class="form-control" value="<?php echo $ename ?>" /></td>
+                    <td><input required  type="text" name="userType" id="userType" required="required" class="form-control" value="<?php echo $ename ?>" /></td>
                     <input type="hidden" id="txt_id" name="txt_id" value="<?php echo $eid ?>" />
                 </tr>
                 <tr>

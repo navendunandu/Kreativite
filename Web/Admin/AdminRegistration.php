@@ -85,26 +85,26 @@ if(isset($_GET["edit"]))
                 <tr>
                     <td width="208">Name</td>
                     <td width="366">
-                        <input type="text" name="txtName" id="txtName" class="form-control" value="<?php echo $ename ?>" />
+                        <input required type="text" name="txtName" id="txtName" class="form-control" value="<?php echo $ename ?>" />
                         <input type="hidden" name="txt_update" id="txt_update" value="<?php echo $eid ?>" />
                     </td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td>
-                        <input type="text" name="txtEmail" id="txtEmail" class="form-control" value="<?php echo $eemail ?>" />
+                        <input required type="text" name="txtEmail" id="txtEmail" class="form-control" value="<?php echo $eemail ?>" />
                     </td>
                 </tr>
                 <tr>
                     <td>Contact</td>
                     <td>
-                        <input type="text" name="txtContact" id="txtContact" class="form-control" value="<?php echo $econtact ?>" />
+                        <input required type="text" name="txtContact" id="txtContact" class="form-control" value="<?php echo $econtact ?>" />
                     </td>
                 </tr>
                 <tr>
                     <td>Password</td>
                     <td>
-                        <input type="text" name="txtPassword" id="txtPassword" class="form-control" value="<?php echo $epassword ?>" />
+                        <input required type="text" name="txtPassword" id="txtPassword" class="form-control" value="<?php echo $epassword ?>" />
                     </td>
                 </tr>
                 <tr>

@@ -68,7 +68,7 @@ include('Head.php');
                 <tr>
                     <td>State</td>
                     <td>
-                        <select name="state" id="state" class="form-control">
+                        <select required name="state" id="state" class="form-control">
                             <option value="">Select State</option>
                             <?php
                             $selquery2 = "select * from tbl_state";
@@ -86,7 +86,7 @@ include('Head.php');
                 <tr>
                     <td>District</td>
                     <td>
-                        <input type="text" name="txtdis" id="txtdis" class="form-control" value="<?php echo $ename?>" />
+                        <input required type="text" name="txtdis" id="txtdis" class="form-control" value="<?php echo $ename?>" />
                         <input type="hidden" name="txt_update" id="txt_update" value="<?php echo $eid?>" />
                     </td>
                 </tr>

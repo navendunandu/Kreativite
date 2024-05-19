@@ -4,32 +4,52 @@ include("../Assets/Connection/connection.php");
 
 
 if (isset($_POST["btn_submit"])) {
-  $password = $_POST["user-password"];
-  $passwordConfirm = $_POST["user-password-confirm"];
-  if ($password == $passwordConfirm) {
-    //Photo uploading
-    $photo = $_FILES['user-photo']['name'];
-    $tempphoto = $_FILES['user-photo']['tmp_name'];
-    move_uploaded_file($tempphoto, '../assets/files/user/Photo/' . $photo);
+  $selQry1 = "select * from tbl_userregistration where userreg_email='" . $_POST["user-email"] . "' ";
+  $data1 = $con->query($selQry1);
 
-    //Proof Uploading
-    $proof = $_FILES['user-file']['name'];
-    $tmpProof = $_FILES['user-file']['tmp_name'];
-    move_uploaded_file($tmpProof, '../assets/files/user/Proof/' . $proof);
+  $selQry2 = "select*from tbl_hiringteam where hiring_email ='" . $_POST["user-email"] . "'";
+  $data2 = $con->query($selQry2);
 
-    $insQuery = "insert into tbl_userregistration(userreg_name,userreg_contact,userreg_email,userreg_address,place_id,userreg_photo,userreg_proof,usertype_id,userreg_password,userreg_gender) values('" . $_POST["user-name"] . "','" . $_POST["user-contact"] . "','" . $_POST["user-email"] . "',
+  $selQry3 = "select*from tbl_locationlender where lender_email='" . $_POST["user-email"] . "'";
+  $data3 = $con->query($selQry3);
+
+  if (($data1->fetch_assoc()) || $data2->fetch_array() || $data3->fetch_assoc()) {
+    ?>
+    <script>
+      alert("Email already exist")
+    </script>
+
+    <?php
+  } else {
+
+
+
+    $password = $_POST["user-password"];
+    $passwordConfirm = $_POST["user-password-confirm"];
+    if ($password == $passwordConfirm) {
+      //Photo uploading
+      $photo = $_FILES['user-photo']['name'];
+      $tempphoto = $_FILES['user-photo']['tmp_name'];
+      move_uploaded_file($tempphoto, '../assets/files/user/Photo/' . $photo);
+
+      //Proof Uploading
+      $proof = $_FILES['user-file']['name'];
+      $tmpProof = $_FILES['user-file']['tmp_name'];
+      move_uploaded_file($tmpProof, '../assets/files/user/Proof/' . $proof);
+
+      $insQuery = "insert into tbl_userregistration(userreg_name,userreg_contact,userreg_email,userreg_address,place_id,userreg_photo,userreg_proof,usertype_id,userreg_password,userreg_gender) values('" . $_POST["user-name"] . "','" . $_POST["user-contact"] . "','" . $_POST["user-email"] . "',
 		'" . $_POST["user-address"] . "','" . $_POST["user-place"] . "','" . $photo . "','" . $proof . "','" . $_POST["user-type"] . "','" . $_POST["user-password"] . "','" . $_POST["gender"] . "') ";
 
-    if ($con->query($insQuery)) {
-      echo "Insertion Success";
+      if ($con->query($insQuery)) {
+        echo "Insertion Success";
+      } else {
+        echo "Insertion Failed";
+      }
     } else {
-      echo "Insertion Failed";
+      echo "Passwords not matching";
     }
-  } else {
-    echo "Passwords not matching";
+
   }
-
-
 }
 
 ?>
@@ -40,9 +60,9 @@ if (isset($_POST["btn_submit"])) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../Assets/Templates/Admin/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../Assets/Templates/Admin/img/favicon.png">
+  <!-- <link rel="icon" type="image/png" href="../Assets/Templates/Admin/img/favicon.png"> -->
   <title>
-    Soft UI Dashboard by Creative Tim
+    KREATIVITE
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -74,8 +94,7 @@ if (isset($_POST["btn_submit"])) {
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
-              href="../index.html">
+            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../index.html">
               <i class="fa fa-chart-pie opacity-6  me-1"></i>
               Dashboard
             </a>
@@ -112,38 +131,48 @@ if (isset($_POST["btn_submit"])) {
             <div class="card z-index-0">
 
               <div class="card-body">
-                <form method="POST" enctype="multipart/form-data">
+                <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                   <div class="mb-3">
                     <label for="user-name">Name:</label>
-                    <input type="text" class="form-control" name="user-name" id="user-name" required>
+                    <input required type="text" class="form-control" name="user-name" id="user-name"
+                      title="Name Allows Only Alphabets, Spaces and First Letter Must Be Capital Letter"
+                      pattern="^[A-Z][a-zA-Z ]*$">
+                    <div class="invalid-feedback">Please enter a valid name with the first letter as a capital letter.
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="user-contact">Contact:</label>
-                    <input type="text" class="form-control" name="user-contact" id="user-contact">
+                    <input required type="text" class="form-control" name="user-contact" id="user-contact"
+                      pattern="[789][0-9]{9}" title="Phone number should start with 7, 8, or 9 and be 10 digits long">
+                    <div class="invalid-feedback">Please enter a valid 10-digit phone number starting with 7, 8, or 9.
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="user-email">Email:</label>
-                    <input type="email" class="form-control" name="user-email" id="user-email">
+                    <input required type="email" class="form-control" name="user-email" id="user-email">
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-address">Address:</label>
-                    <input type="text" class="form-control" name="user-address" id="user-address">
+                    <input required type="text" class="form-control" name="user-address" id="user-address">
+                    <div class="invalid-feedback">Please enter your address.</div>
                   </div>
                   <div class="mb-3">
                     <label>Gender:</label>
-                    <!-- <div class="form-check form-check-info text-left"> -->
                     <div class="form-control custom-radio custom-control">
-                      <input class="custom-control-input" type="radio" name="gender" id="male" value="male" required>
+                      <input required class="custom-control-input" type="radio" name="gender" id="male" value="male">
                       <label class="custom-control-label" for="male">Male</label>
-                      <input class="custom-control-input" type="radio" name="gender" id="female" value="female" required>
+                      <input required class="custom-control-input" type="radio" name="gender" id="female"
+                        value="female">
                       <label class="custom-control-label" for="female">Female</label>
-                      <input class="custom-control-input" type="radio" name="gender" id="others" value="other" required>
+                      <input required class="custom-control-input" type="radio" name="gender" id="others" value="other">
                       <label class="custom-control-label" for="others">Other</label>
                     </div>
                   </div>
                   <div class="mb-3">
                     <label for="user-state">State:</label>
-                    <select class="form-control" name="user-state" id="user-state" onchange="getDistrict(this.value)">
+                    <select required class="form-control" name="user-state" id="user-state"
+                      onchange="getDistrict(this.value)">
                       <option value="">Choose State</option>
                       <?php
                       // State select
@@ -156,31 +185,36 @@ if (isset($_POST["btn_submit"])) {
                         </option>
                       <?php } ?>
                     </select>
+                    <div class="invalid-feedback">Please select a state.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-district">District:</label>
-                    <select class="form-control" name="user-district" id="user-district"
+                    <select required class="form-control" name="user-district" id="user-district"
                       onchange="getPlace(this.value)">
                       <option value="">Choose District</option>
                     </select>
+                    <div class="invalid-feedback">Please select a district.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-place">Place:</label>
-                    <select class="form-control" name="user-place" id="user-place">
+                    <select required class="form-control" name="user-place" id="user-place">
                       <option value="">Choose Place</option>
                     </select>
+                    <div class="invalid-feedback">Please select a place.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-photo">Photo:</label>
-                    <input type="file" class="form-control" name="user-photo" id="user-photo">
+                    <input required type="file" class="form-control" name="user-photo" id="user-photo">
+                    <div class="invalid-feedback">Please upload a photo.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-file">File:</label>
-                    <input type="file" class="form-control" name="user-file" id="user-file">
+                    <input required type="file" class="form-control" name="user-file" id="user-file">
+                    <div class="invalid-feedback">Please upload a file.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-type">User Type:</label>
-                    <select class="form-control" name="user-type" id="user-type">
+                    <select required class="form-control" name="user-type" id="user-type">
                       <option value="">Choose Usertype</option>
                       <?php
                       $selUserTypeQuery = "select * from tbl_usertype";
@@ -194,19 +228,31 @@ if (isset($_POST["btn_submit"])) {
                       }
                       ?>
                     </select>
+                    <div class="invalid-feedback">Please select a user type.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-password">Password:</label>
-                    <input type="text" class="form-control" name="user-password" id="user-password">
+                    <input required type="password" class="form-control" name="user-password" id="user-password"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                    <div class="invalid-feedback">Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
                   </div>
                   <div class="mb-3">
                     <label for="user-password-confirm">Confirm Password:</label>
-                    <input type="text" class="form-control" name="user-password-confirm" id="user-password-confirm">
+                    <input required type="password" class="form-control" name="user-password-confirm"
+                      id="user-password-confirm">
+                    <div class="invalid-feedback">Passwords do not match.</div>
+                  </div>
+                  <div class="mb-3 form-check">
+                    <label for="terms-conditions" class="form-check-label">I agree to <a href="./terms.html">terms and conditions</a>:</label>
+                    <input required type="checkbox" class="form-check-input" name="terms-conditions"
+                      id="terms-conditions">
+                    <div class="invalid-feedback">Please agree to the terms and conditions.</div>
                   </div>
                   <div class="text-center">
                     <input type="submit" class="btn btn-primary" value="Sign-Up" name="btn_submit">
                   </div>
-                  <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;"
+                  <p class="text-sm mt-3 mb-0">Already have an account? <a href="./Login.php"
                       class="text-dark font-weight-bolder">Sign in</a></p>
                 </form>
               </div>
@@ -220,24 +266,7 @@ if (isset($_POST["btn_submit"])) {
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mb-4 mx-auto text-center">
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Company
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              About Us
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Team
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Products
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Blog
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Pricing
-            </a>
+
           </div>
           <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
             <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
@@ -263,7 +292,7 @@ if (isset($_POST["btn_submit"])) {
               Copyright ©
               <script>
                 document.write(new Date().getFullYear())
-              </script> Soft by Creative Tim.
+              </script> KREATIVITE.
             </p>
           </div>
         </div>
@@ -309,6 +338,18 @@ if (isset($_POST["btn_submit"])) {
         }
       });
     }
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.querySelector('.needs-validation');
+
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add('was-validated');
+      });
+    });
   </script>
 </body>
 

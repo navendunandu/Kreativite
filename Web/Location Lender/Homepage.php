@@ -1,10 +1,12 @@
 <?php
 include("../Assets/Connection/connection.php");
 session_start();
+include("./SessionValidation.php");
 
 $selQry = "select * from tbl_locationlender ll inner join tbl_place p on ll.place_id = p.place_id where lender_id='".$_SESSION["lid"]."'";
 $data = $con->query($selQry);
 $row= $data->fetch_assoc();
+
  ?>
 
 
@@ -15,7 +17,7 @@ $row= $data->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Meyawo landing page.">
     <meta name="author" content="Devcrud">
-    <title>KREATIVITE</title>
+    <title>HOMEPAGE - <?php echo strtoupper($_SESSION["lname"]) ?></title>
     <!-- font icons -->
     <link rel="stylesheet" href="../Assets/Templates/Main/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + Meyawo main styles -->
@@ -39,6 +41,12 @@ $row= $data->fetch_assoc();
                 </li>
                 <li class="item">
                     <a class="link" href="./Myprofile.php">My Profile</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="./MyComplaint.php">My Complaints</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="../Logout.php">Log Out</a>
                 </li>
               
                 <!-- <li class="item ml-md-3">
@@ -115,7 +123,7 @@ $row= $data->fetch_assoc();
                 ?>
             <div class="blog-card">
                 <div class="blog-card-header">
-                    <img src="../assets/files/loclender/Photo/<?php echo $row2['location_image']?>" class="blog-card-img" alt="<?php echo $row2["project_image"] ?>">
+                    <img src="../assets/files/loclender/Photo/<?php echo $row2['location_image']?>" class="blog-card-img" alt="<?php echo $row2["location_name"] ?>">
                 </div>
                 <div class="blog-card-body">
                     <h5 class="blog-card-title"><?php echo $row2["location_name"] ?></h6>
@@ -135,7 +143,7 @@ $row= $data->fetch_assoc();
 
         </div><!-- end of container -->
     </section><!-- end of blog section -->
-
+                        
    
 
     <!-- footer -->

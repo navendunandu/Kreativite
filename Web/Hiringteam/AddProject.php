@@ -52,24 +52,26 @@ if(isset($_GET["delId"]))
 <body>
 	
 <div class="container mt-5">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             <table class="table table-bordered">
                 <tr>
                     <td>Project Title:</td>
                     <td>
-                        <input type="text" name="project-title" id="project-title" class="form-control">
+                        <input required type="text" name="project-title" id="project-title" class="form-control">
+                        <div class="invalid-feedback">Please Fill this field</div>
                     </td>
                 </tr>
                 <tr>
                     <td>Project Details:</td>
                     <td>
-                        <input type="text" name="project-detail" id="project-detail" class="form-control">
+                        <textarea required type="text" name="project-detail" id="project-detail" class="form-control"  pattern="[A-Za-z0-9\s,.]{1,50}"></textarea>
+                        <div class="invalid-feedback">Requirement should not exceed 50 characters</div>
                     </td>
                 </tr>
                 <tr>
                     <td>Project Image:</td>
                     <td>
-                        <input type="file" name="project-image" id="project-image" class="form-control-file">
+                        <input  type="file" name="project-image" id="project-image" class="form-control-file">
                     </td>
                 </tr>
                 <tr>
@@ -114,7 +116,25 @@ if(isset($_GET["delId"]))
                 <?php } ?>
             </tbody>
         </table>
+        <a class="btn btn-primary" href="./Feedback.php">Feedback</a>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            const form =document.querySelector(".needs-validation")
+            form.addEventListener("submit",function(event){
+                if(!form.checkValidity())
+                {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add("was-validated")
+            })
+            
+        })
+
+        
+    </script>
 </body>
 </html>
 

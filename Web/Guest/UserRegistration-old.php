@@ -120,7 +120,7 @@ if(isset($_POST["btn_submit"]))
                 <td><input type="file" name="user-photo" id="user-photo"/></td>
             </tr>
             <tr>
-            	<td>File:</td>
+            	<td>Proof:</td>
                 <td><input type="file" name="user-file" id="user-file"/></td>
             </tr>
             <tr>

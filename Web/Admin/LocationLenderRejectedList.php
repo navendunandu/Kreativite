@@ -38,13 +38,13 @@ include("../Assets/Connection/connection.php");
         <a href="Homepage.php" class="btn btn-primary mb-4">Home</a>
 
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
                         <th>SI No</th>
                         <th>Name</th>
-                        <th>Lender Type</th>
-                        <th>Status</th>
+                        <th>Contact</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -60,7 +60,8 @@ include("../Assets/Connection/connection.php");
                             <td><?php echo $i ?></td>
                             <td><?php echo $row["lender_name"] ?></td>
                             <td><?php echo $row["lender_contact"] ?></td>
-                            <td><?php echo $row["lender_status"] ?></td>
+                            <td><?php echo $row["lender_email"] ?></td>
+
                             <td>
                                 <a href="LocationLenderRejectedList.php?update=<?php echo $row["lender_id"] ?>" class="btn btn-success">Accept</a>
                             </td>

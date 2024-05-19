@@ -7,6 +7,16 @@ include("Head.php");
 
 if(isset($_POST["btn_submit"]))
 {
+    $selQry="select * from tbl_projectapplication where project_id=".$_GET['applyId']." and user_id=".$_SESSION['uid'];
+    $result=$con->query($selQry);
+    if($result->fetch_assoc()){
+        ?>
+        <script>
+            alert('Already Applied')
+            </script>
+            <?php
+    }
+    else{
 		$photo=$_FILES['application-file']['name'];
 		$tempphoto=$_FILES['application-file']['tmp_name'];
 		move_uploaded_file($tempphoto, '../assets/files/user/Application/'.$photo);
@@ -20,6 +30,7 @@ if(isset($_POST["btn_submit"]))
 		{
 			echo "Insertion Failed";
 		}
+    }
 }
  ?>
 
@@ -32,31 +43,64 @@ if(isset($_POST["btn_submit"]))
 </head>
 
 <body>
-<form method="post" enctype="multipart/form-data">
-	<table border="2">
-    	<tr>
-        	<td>Apllication Details</td>
-            <td>
-            	<textarea name="application-details"></textarea>
-            </td>
-        </tr>
-        <tr>
-        <tr>
-        	<td>Application File</td>
-            <td>
-            	<input type="file" name="application-file" id="application-file" />
-            </td>
-        </tr>
-        <tr>
-        	<td>
-            	<input type="submit" value="Submit" name="btn_submit" />
-            </td>
-            <td>
-            	<input type="reset" value="Reset" name="btn_reset" />
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="container mt-5">
+        <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Application Details</th>
+                    <td>
+                        <textarea required id="textarea" class="form-control" name="application-details" rows="4" maxlength="200" oninput="textval()"></textarea>
+                        <span id="target"></span>
+                        <div class="invalid-feedback">Project details should not exceed 200 characters</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Resume:</th>
+                    <td>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="application-file" id="application-file">
+                            <label class="custom-file-label" for="application-file">Choose file</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary" name="btn_submit">Submit</button>
+                    </td>
+                    <td>
+                        <button type="reset" class="btn btn-secondary" name="btn_reset">Reset</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        let count = 0
+        document.addEventListener("DOMContentLoaded",function(){
+            const form =document.querySelector(".needs-validation")
+            form.addEventListener("submit",function(event){
+                if(!form.checkValidity())
+                {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add("was-validated")
+            })
+            
+        })
+
+        function textval()
+        {
+            const area =document.querySelector("#textarea")
+            let target =document.querySelector("#target")
+            count =area.value.length
+            target.textContent = `${count}/200`
+        }
+
+        
+
+        
+    </script>
 </body>
 </html>
 

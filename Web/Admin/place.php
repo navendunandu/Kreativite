@@ -55,7 +55,7 @@ if(isset($_GET["delID"]))
                 <tr>
                     <td>State:</td>
                     <td>
-                        <select name="state" id="state" onchange="getDistrict(this.value)" class="form-control">
+                        <select required name="state" id="state" onchange="getDistrict(this.value)" class="form-control">
                             <option value="">Select State</option>
                             <?php
                             // PHP code to display states from tbl_state in the select box
@@ -73,7 +73,7 @@ if(isset($_GET["delID"]))
                 <tr>
                     <td>District:</td>
                     <td>
-                        <select name="district" id="district" class="form-control">
+                        <select required name="district" id="district" class="form-control">
                             <option value="">Select</option>
                         </select>
                     </td>
@@ -81,7 +81,7 @@ if(isset($_GET["delID"]))
                 <tr>
                     <td>Place:</td>
                     <td>
-                        <input type="text" name="place" id="place" class="form-control" />
+                        <input required type="text" name="place" id="place" class="form-control" />
                     </td>
                 </tr>
                 <tr>

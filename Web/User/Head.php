@@ -1,3 +1,6 @@
+<?php
+include('SessionValidation.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,13 +34,19 @@
                     <a class="link" href="MyProfile.php">My Profile</a>
                 </li>
                 <li class="item">
-                    <a class="link" href="ViewProject.php">New Projects</a>
+                    <a class="link" href="ViewProject.php">Find Jobs</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="./MyComplaint.php">MyComplaint</a>
                 </li>
                 <li class="item">
                     <a class="link" href="PreviousWork.php">My Works</a>
                 </li>
                 <li class="item">
-                    <a class="link" href="ViewApplication.php">New Applications</a>
+                    <a class="link" href="ViewApplication.php">View Applications</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="../index.html">Log Out</a>
                 </li>
                 <!-- <li class="item ml-md-3">
                     <a href="components.html" class="btn btn-primary">Components</a>

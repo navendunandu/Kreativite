@@ -1,85 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" dir="ltr">
+
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Assets/Templates/Landing/style.css" />
-    <title>Kreativite</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap"
-      rel="stylesheet"
-    />
-    <!-- ------------ -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>KREATIVITE</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Templates/Landing/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Assets/Templates/Landing/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Assets/Templates/Landing/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="Assets/Templates/Landing/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="Assets/Templates/Landing/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="Assets/Templates/Landing/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="Assets/Templates/Landing/assets/css/theme.css" rel="stylesheet" />
+
   </head>
+
+
   <body>
-    <section class="hero">
-      <h1 class="hero-title">Kreativite</h1>
-      <p class="hero-subtitle">
-        Welcome to Kreativite, the ultimate hub for small scale filmmakers,
-        artists, and location scouts! Collaborate on projects, find your dream
-        team, and explore the perfect shooting locations all in one place.
-      </p>
-     <div class="starting-btns">
-      <a href="#reg-links" class="hero-btn">Get Started</a>
-      <a href="../Web/Guest/login.php" class="hero-btn">Log In</a>
-     </div>
-      <img
-        class="hero-img"
-        src="Assets/Templates/Landing/assets/images/photo-1524834671419-aa7d41c1c657.avif"
-        alt="image of a fil crew"
-      />
-    </section>
-    <section class="elaboration">
-      <div class="elaboration-content-container">
-        <ul class="features">
-            <h2 class="elaboration-title">Forge your film</h2>
-            <li class="feature-items">
-              <h3>Crew Connect</h3>
-              <p>
-                Find the perfect crew members for your next film project, network,
-                and unleash your artistic vision.
-              </p>
-            </li>
-            <li class="feature-items">
-              <h3>Artist Alliance</h3>
-              <p>
-                A platform for aspiring film artists to showcase their talents and
-                find amazing projects to work on.
-              </p>
-            </li>
-            <li class="feature-items">
-              <h3>Location Library</h3>
-              <p>
-                Discover an extensive collection of fantastic film locations
-                available to rent for your next shoot.
-              </p>
-            </li>
-          </ul>
-          <img class="elaboration-img" src="Assets/Templates/Landing/assets/images/filmroll.avif" alt="image of a camera" />
-      </div>
-    </section>
-    <section class="conclusion">
-      <p class="conclusion-text">
-        Ready to jump-start your filmmaking career? Find your team, create your
-        masterpiece, and share it with the world.
-      </p>
-      <div class="btn-links" id="reg-links">
-        <a href="../Web/Guest/UserRegistration.php" class="btn-join">Talent</a>
-        <a href="../Web/Guest/hirereg.php" class="btn-learn">Hirer</a>
-        <a href="../Web/Guest/loclenderreg.php" class="btn-join">Location Lender</a>
-      </div>
-    </section>
-    <footer>
-      <span>© 2023 Kreativite : A Platform for Filmmakers and Artists</span>
-    </footer>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="#"> <img class="me-3" src="Assets/Templates/Landing/assets/img/gallery/logo.png" alt="" />
+            <div class="text-primary font-base">KREATIVITE</div>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item"><a class="nav-link fw-medium active" aria-current="page" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+              
+            </ul>
+            <form class="ps-lg-5">
+              <a href="./Guest/Login.php" class="btn btn-lg btn-primary rounded-pill bg-gradient font-base order-0">Login</a>
+              <a href="#register" class="btn btn-lg btn-primary rounded-pill bg-gradient font-base order-0">Sign Up</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <section class="py-0" id="home">
+        <div class="bg-holder d-none d-md-block" style="background-image:url(Assets/Templates/Landing/assets/img/illustrations/bg3-removebg.png);background-position:right bottom;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="bg-holder d-block d-md-none" style="background-image:url(Assets/Templates/Landing/assets/img/illustrations/hero-bg.png);background-position:right top;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row align-items-center min-vh-md-75">
+            <div class="col-md-7 col-lg-6 py-6 text-sm-start text-center">
+              <h1 class="mt-6 mb-sm-4 display-4 fw-semi-bold lh-sm fs-4 fs-lg-6 fs-xxl-7">Discover. Connect. Create.<br class="d-block d-lg-none d-xl-block" /></h1>
+              <p class="mb-4 fs-1">Your Film Talent & Location Hub </p>
+              </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section>
+
+        <div class="container" id="services">
+          <div class="row justify-content-center">
+            <div class="col-auto mb-5 mb-md-7">
+              <h1 class="fw-semi-bold text-warning">Our <span class="text-1100">Services</span></h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0 text-center">
+              <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="Assets/Templates/Landing/assets/img/gallery/researchers.png" width="100" alt="..." />
+                <h3 class="h5 mb-4 font-base">Artists</h3>
+                <p class="lh-lg">Uncover Extraordinary Talent for Your Next Film Project</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0 text-center">
+              <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="Assets/Templates/Landing/assets/img/gallery/librarian.png" width="100" alt="..." />
+                <h3 class="h5 mb-4 font-base">Locations</h3>
+                <p class="lh-lg">Discover Exceptional Filming Locations for Your Unique Vision</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0 text-center">
+              <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="Assets/Templates/Landing/assets/img/gallery/societies.png" width="100" alt="..." />
+                <h3 class="h5 mb-4 font-base">Verified Hirers</h3>
+                <p class="lh-lg">Verified Hirers: Your Assurance of Quality and Professionalism</p>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+      <section id="libraries">
+        <div class="bg-holder" style="background-image:url(Assets/Templates/Landing/assets/img/illustrations/libraries-bg.png);background-position:left bottom;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row g-xl-0 align-items-center">
+            <div class="col-md-5 col-lg-7 text-xl-center"><img class="img-fluid mb-5 mb-md-0" src="Assets/Templates/Landing/assets/img/illustrations/promo.webp" width="620" alt="" /></div>
+            <div class="col-md-7 col-lg-4 text-center text-md-start offset-lg-1 offset-xxl-0">
+              <h1 class="fw-semi-bold text-warning">Industry <span class="text-1100">Gamechanger</span></h1>
+              <p class="pt-3 lh-lg">Experience a Film Industry Revolution! Our cutting-edge website is the first of its kind, where talent and locations unite for an unprecedented cinematic experience. Say goodbye to the ordinary and embrace a new era of film production, with endless possibilities for both talents and filmmakers, all at your fingertips.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+      <section class="py-6">
+        <div class="bg-holder" style="background-image:url(Assets/Templates/Landing/assets/img/illustrations/cta-bg.png);background-position:right bottom;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container" id="register">
+          <div class="row align-items-center">
+            <div class="col-md-5 col-lg-7 order-md-1 text-end"><img class="img-fluid mb-4 mb-md-0" src="Assets/Templates/Landing/assets/img/illustrations/reg-transformed.png" width="670" alt="" /></div>
+            <div class="col-md-7 col-lg-5 text-center text-md-start">
+              <h1 class="fw-semi-bold text-warning lh-base">Sign <span class="text-1100">Up now... <br/></span></h1>
+              <p class="my-4 lh-lg">Unlock limitless potential in the world of film production. Join us and be part of a transformative community where talents find their stage and locations become unforgettable backdrops. Sign up today to embark on an extraordinary journey and take your first step toward cinematic greatness.</p>
+              <div class="d-flex justify-content-center d-md-inline-block"><a class="pe-2 pe-sm-3 pe-md-4 btn btn-primary" href="./Guest/UserRegistration.php">Artitst</a><a href="./Guest/hirereg.php" class="btn btn-primary mx-1">Hiring Team</a><a class="btn btn-primary" href="./Guest/loclenderreg.php">Location Lender</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-0">
+        <div class="bg-holder" style="background-image:url(Assets/Templates/Landing/assets/img/illustrations/footer-bg.png);background-position:center;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row justify-content-between pb-5 pt-8">
+            <div class="col-12 col-lg-auto mb-5 mb-lg-0"><a class="d-flex align-items-center fw-semi-bold fs-3" href="#"> <img class="me-3" src="Assets/Templates/Landing/assets/img/gallery/logo.png" alt="" />
+                <div class="text-primary font-base">KREATIVITE</div>
+              </a></div>
+            <div class="col-auto mb-3">
+              <h6 class="mb-5 font-base fs-1">About us </h6>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Vision</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Careers</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Blog</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Terms of Service</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Donate</a></li>
+              </ul>
+            </div>
+            <div class="col-auto mb-3">
+              <h6 class="mb-5 font-base fs-1">Develop </h6>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Development center</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">API Documentation</a></li>
+              </ul>
+            </div>
+            <div class="col-auto mb-3">
+              <h6 class="mb-5 font-base fs-1">Develop </h6>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Help Center</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Report a Problem</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Suggesting Edits</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row flex-center">
+            <div class="col-auto mb-2">
+              <p class="mb-0 fs--1 my-2 text-center">&copy; KREATIVITE &nbsp;
+                             </p>
+            </div>
+            <div class="col-auto my-4">
+              <ul class="list-unstyled list-inline mb-0">
+                <li class="list-inline-item me-3"><a href="#!">
+                    <svg class="bi bi-youtube" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a href="#!">
+                    <svg class="bi bi-twitter" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a class="text-decoration-none" href="#!">
+                    <svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a href="#!">
+                    <svg class="bi bi-linkedin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path>
+                    </svg></a></li>
+                <li class="list-inline-item me-3"><a href="#!">
+                    <svg class="bi bi-instagram" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"> </path>
+                    </svg></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="Assets/Templates/Landing/vendors/@popperjs/popper.min.js"></script>
+    <script src="Assets/Templates/Landing/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="Assets/Templates/Landing/vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="Assets/Templates/Landing/assets/js/theme.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   </body>
+
 </html>

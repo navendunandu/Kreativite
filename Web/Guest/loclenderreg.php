@@ -2,26 +2,47 @@
 include("../Assets/Connection/connection.php");
 
 if (isset($_POST["btn_submit"])) {
-    $password = $_POST["lender-password"];
-    $confirm = $_POST["lender-password-confirm"];
-    if ($password == $confirm) {
-        $photo = $_FILES["lender-photo"]["name"];
-        $temPhoto = $_FILES["lender-photo"]["tmp_name"];
-        move_uploaded_file($temPhoto, '../assets/files/Loclender/Photo/' . $photo);
 
-        $proof = $_FILES["lender-file"]["name"];
-        $temProof = $_FILES["lender-file"]["tmp_name"];
-        move_uploaded_file($temProof, '../assets/files/Loclender/Proof/' . $proof);
+    $selQry1 = "select * from tbl_userregistration where userreg_email='" . $_POST["lender-email"] . "' ";
+    $data1 = $con->query($selQry1);
 
-        $insQuery = "insert into tbl_locationlender(lender_name,lender_contact,lender_address,lender_email,place_id,lender_photo,lender_proof,lender_password) values('" . $_POST["lender-name"] . "','" . $_POST["lender-contact"] . "','" . $_POST["lender-address"] . "','" . $_POST["lender-email"] . "','" . $_POST["lender-place"] . "','" . $photo . "','" . $proof . "','" . $_POST["lender-password"] . "')";
+    $selQry2 = "select*from tbl_hiringteam where hiring_email ='" . $_POST["lender-email"] . "'";
+    $data2 = $con->query($selQry2);
 
-        if ($con->query($insQuery)) {
-            echo "Insertion Success";
-        } else {
-            echo "Insertion Failed";
-        }
+    $selQry3 = "select*from tbl_locationlender where lender_email='" . $_POST["lender-email"] . "'";
+    $data3 = $con->query($selQry3);
+
+    if (($data1->fetch_assoc()) || $data2->fetch_array() || $data3->fetch_assoc()) {
+        ?>
+
+        <script>
+            alert("Email Already Exists")
+        </script>
+
+        <?php
     } else {
-        echo "Password Mismatch";
+
+        $password = $_POST["lender-password"];
+        $confirm = $_POST["lender-password-confirm"];
+        if ($password == $confirm) {
+            $photo = $_FILES["lender-photo"]["name"];
+            $temPhoto = $_FILES["lender-photo"]["tmp_name"];
+            move_uploaded_file($temPhoto, '../assets/files/Loclender/Photo/' . $photo);
+
+            $proof = $_FILES["lender-file"]["name"];
+            $temProof = $_FILES["lender-file"]["tmp_name"];
+            move_uploaded_file($temProof, '../assets/files/Loclender/Proof/' . $proof);
+
+            $insQuery = "insert into tbl_locationlender(lender_name,lender_contact,lender_address,lender_email,place_id,lender_photo,lender_proof,lender_password) values('" . $_POST["lender-name"] . "','" . $_POST["lender-contact"] . "','" . $_POST["lender-address"] . "','" . $_POST["lender-email"] . "','" . $_POST["lender-place"] . "','" . $photo . "','" . $proof . "','" . $_POST["lender-password"] . "')";
+
+            if ($con->query($insQuery)) {
+                echo "Insertion Success";
+            } else {
+                echo "Insertion Failed";
+            }
+        } else {
+            echo "Password Mismatch";
+        }
     }
 }
 
@@ -35,9 +56,9 @@ if (isset($_POST["btn_submit"])) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../Assets/Templates/Admin/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../Assets/Templates/Admin/img/favicon.png">
+    <!-- <link rel="icon" type="image/png" href="../Assets/Templates/Admin/img/favicon.png"> -->
     <title>
-        Soft UI Dashboard by Creative Tim
+        KREATIVITE
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -55,8 +76,8 @@ if (isset($_POST["btn_submit"])) {
 </head>
 
 <body class="">
-   <!-- Navbar -->
-   <nav
+    <!-- Navbar -->
+    <nav
         class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
         <div class="container">
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -88,7 +109,7 @@ if (isset($_POST["btn_submit"])) {
         </div>
     </nav>
     <!-- End Navbar -->
-   
+
     <main class="main-content  mt-0">
         <section class="min-vh-100 mb-8">
             <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
@@ -110,31 +131,39 @@ if (isset($_POST["btn_submit"])) {
                         <div class="card z-index-0">
 
                             <div class="card-body">
-                                <form method="POST" enctype="multipart/form-data">
+                                <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                                     <div class="mb-3">
                                         <label for="lender-name">Name:</label>
                                         <input pattern="^[A-Z]+[a-zA-Z ]*$"
                                             title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter"
                                             type="text" class="form-control" name="lender-name" id="lender-name"
                                             required>
+                                        <div class="invalid-feedback">Please enter a name with only Alphabets,Spaces and
+                                            First Letter Must Be Capital Letter</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-contact">Contact:</label>
-                                        <input type="text" class="form-control" name="lender-contact"
-                                            id="lender-contact">
+                                        <input required type="text" class="form-control" name="lender-contact"
+                                            id="lender-contact" pattern="[7-9]{1}[0-9]{9}"
+                                            title="Phone number with 7-9 and remaing 9 digit with 0-9">
+                                        <div class="invalid-feedback">Please enter a phone number with 7-9 and remaing 9
+                                            digit with 0-9</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-email">Email:</label>
-                                        <input type="email" class="form-control" name="lender-email" id="lender-email">
+                                        <input required type="email" class="form-control" name="lender-email"
+                                            id="lender-email">
+                                        <div class="invalid-feedback">Please enter a valid email</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-address">Address:</label>
-                                        <input type="text" class="form-control" name="lender-address"
+                                        <input required type="text" class="form-control" name="lender-address"
                                             id="lender-address">
+                                        <div class="invalid-feedback">Please enter your address</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-state">State:</label>
-                                        <select class="form-control" name="lender-state" id="lender-state"
+                                        <select required class="form-control" name="lender-state" id="lender-state"
                                             onchange="getDistrict(this.value)">
                                             <option value="">Choose State</option>
                                             <?php
@@ -148,42 +177,60 @@ if (isset($_POST["btn_submit"])) {
                                                 </option>
                                             <?php } ?>
                                         </select>
+                                        <div class="invalid-feedback">Please choose your state</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-district">District:</label>
-                                        <select class="form-control" name="lender-district" id="lender-district"
-                                            onchange="getPlace(this.value)">
+                                        <select required class="form-control" name="lender-district"
+                                            id="lender-district" onchange="getPlace(this.value)">
                                             <option value="">Choose District</option>
                                         </select>
+                                        <div class="invalid-feedback">Please choose your district</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-place">Place:</label>
-                                        <select class="form-control" name="lender-place" id="lender-place">
+                                        <select required class="form-control" name="lender-place" id="lender-place">
                                             <option value="">Choose Place</option>
                                         </select>
+                                        <div class="invalid-feedback">Please choose your place</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-photo">Photo:</label>
-                                        <input type="file" class="form-control" name="lender-photo" id="lender-photo">
+                                        <input required type="file" class="form-control" name="lender-photo"
+                                            id="lender-photo">
+                                        <div class="invalid-feedback">Please upload yout photo</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="lender-file">File:</label>
-                                        <input type="file" class="form-control" name="lender-file" id="lender-file">
+                                        <label for="lender-file">Proof:</label>
+                                        <input required type="file" class="form-control" name="lender-file"
+                                            id="lender-file">
+                                        <div class="invalid-feedback">Please upload your proof</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-password">Password:</label>
-                                        <input type="text" class="form-control" name="lender-password"
-                                            id="lender-password">
+                                        <input required type="password" class="form-control" name="lender-password"
+                                            id="lender-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                                        <div class="invalid-feedback">Password must contain at least one number and one
+                                            uppercase and lowercase letter, and at least 8 or more characters</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="lender-password-confirm">Confirm Password:</label>
-                                        <input type="text" class="form-control" name="lender-password-confirm"
-                                            id="lender-password-confirm">
+                                        <input required type="password" class="form-control"
+                                            name="lender-password-confirm" id="lender-password-confirm">
+                                        <div class="invalid-feedback">Password mismatch</div>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <label for="terms-conditions" class="form-check-label">I agree to <a
+                                                href="./terms.html">terms and conditions</a>:</label>
+                                        <input required type="checkbox" class="form-check-input" name="terms-conditions"
+                                            id="terms-conditions">
+                                        <div class="invalid-feedback">Please agree to the terms and conditions.</div>
                                     </div>
                                     <div class="text-center">
                                         <input type="submit" class="btn btn-primary" value="Sign-Up" name="btn_submit">
                                     </div>
-                                    <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;"
+                                    <p class="text-sm mt-3 mb-0">Already have an account? <a href="./Login.php"
                                             class="text-dark font-weight-bolder">Sign in</a></p>
                                 </form>
                             </div>
@@ -197,24 +244,7 @@ if (isset($_POST["btn_submit"])) {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mb-4 mx-auto text-center">
-                        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                            Company
-                        </a>
-                        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                            About Us
-                        </a>
-                        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                            Team
-                        </a>
-                        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                            Products
-                        </a>
-                        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                            Blog
-                        </a>
-                        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                            Pricing
-                        </a>
+
                     </div>
                     <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
                         <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
@@ -240,7 +270,7 @@ if (isset($_POST["btn_submit"])) {
                             Copyright ©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Soft by Creative Tim.
+                            </script> KREATIVITE
                         </p>
                     </div>
                 </div>
@@ -286,6 +316,18 @@ if (isset($_POST["btn_submit"])) {
                 }
             });
         }
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('.needs-validation');
+
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                form.classList.add('was-validated');
+            });
+        });
     </script>
 </body>
 

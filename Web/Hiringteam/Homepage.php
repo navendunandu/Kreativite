@@ -1,6 +1,8 @@
 <?php
 include("../Assets/Connection/connection.php");
 session_start();
+include("./SessionValidation.php");
+
 
 $selQry = "select * from tbl_hiringteam ht inner join tbl_place p on ht.place_id = p.place_id   where hiring_id='".$_SESSION["hid"]."'";
 $data = $con->query($selQry);
@@ -15,7 +17,7 @@ $row= $data->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Meyawo landing page.">
     <meta name="author" content="Devcrud">
-    <title>KREATIVITE</title>
+    <title>HOMEPAGE - <?php echo strtoupper($_SESSION["hname"]) ?></title>
     <!-- font icons -->
     <link rel="stylesheet" href="../Assets/Templates/Main/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + Meyawo main styles -->
@@ -45,6 +47,12 @@ $row= $data->fetch_assoc();
                 </li>
                 <li class="item">
                     <a class="link" href="./MyBooking.php">My Bookings</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="./MyComplaints.php">My Complaints</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="../Logout.php">Log Out</a>
                 </li>
               
                 <!-- <li class="item ml-md-3">

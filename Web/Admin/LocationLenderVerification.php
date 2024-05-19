@@ -55,15 +55,20 @@ include("../Assets/Connection/connection.php");
                     <tr>
                         <th>SI No</th>
                         <th>Name</th>
-                        <th>Lender Type</th>
-                        <th>Status</th>
+                        <th>Contact No</th>
+                        <th>District</th>
+                        <th>State</th>
+                        <th>Image</th>
+                        <th>Proof</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $i = 0;
-                    $selQry = "SELECT * FROM tbl_locationlender WHERE lender_status = 0";
+                    $selQry = "SELECT * FROM tbl_locationlender l  INNER JOIN tbl_place p ON l.place_id = p.place_id 
+                    INNER JOIN tbl_district d ON p.district_id = d.district_id INNER JOIN tbl_state s ON d.district_id = s.state_id  
+                    WHERE lender_status = 0";
                     $selData = $con->query($selQry);
                     while ($row = $selData->fetch_assoc()) {
                         $i++;
@@ -72,7 +77,10 @@ include("../Assets/Connection/connection.php");
                             <td><?php echo $i ?></td>
                             <td><?php echo $row["lender_name"] ?></td>
                             <td><?php echo $row["lender_contact"] ?></td>
-                            <td><?php echo $row["lender_status"] ?></td>
+                            <td><?php echo $row["district_name"] ?></td>
+                            <td><?php echo $row["state_name"] ?></td>
+                            <td><img src="../Assets/Files/Loclender/Photo/<?php echo $row["lender_photo"] ?>" width="75" height="75" /></td>
+                            <td><a href="ViewProofLender.php?view=<?php echo $row["lender_id"] ?>"><img src="../Assets/Files/Loclender/Proof/<?php echo $row["lender_proof"] ?>" width="75" height="75" /></a></td>
                             <td>
                                 <a href="LocationLenderVerification.php?update=<?php echo $row["lender_id"] ?>" class="btn btn-success">Accept</a> /
                                 <a href="LocationLenderVerification.php?reject=<?php echo $row["lender_id"] ?>" class="btn btn-danger">Reject</a>
